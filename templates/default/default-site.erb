@@ -1,7 +1,7 @@
 <VirtualHost *:80>
         ServerAdmin <%= node[:apache][:contact] %>
 
-        DocumentRoot /var/www/
+        DocumentRoot <%= node[:apache][:docroot] %>
         <Directory />
                 Options FollowSymLinks
                 AllowOverride None
