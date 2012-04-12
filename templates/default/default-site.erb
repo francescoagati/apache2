@@ -1,11 +1,19 @@
 <VirtualHost *:80>
         ServerAdmin <%= node[:apache][:contact] %>
 
+  
+  
+        AddType text/html .shtml
+        AddOutputFilter INCLUDES .shtml
+
         DocumentRoot <%= node[:apache][:docroot] %>
-        <Directory />
-                Options FollowSymLinks
-                AllowOverride None
+        <Directory <%= node[:apache][:docroot] %>>
+	        Options +Includes 
+	        AllowOverride None
+	        Order allow,deny
+	        allow from all
         </Directory>
+  
         <Directory /var/www/>
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride None
